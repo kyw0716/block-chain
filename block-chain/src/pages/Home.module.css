@@ -1,0 +1,161 @@
+@media(min-width: 800px){
+    .upContainer{
+        display: flex;
+        align-items: center;
+    }
+    .upLeft{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 70vh;
+        border: 1px solid;
+        margin: 3px 3px;
+    }
+    .upLeftInput1{
+        width: 80%;
+        padding: 0;
+        margin: 0;
+        border: 1px solid;
+        height: 7%;
+        margin-bottom: 3%;
+    }
+    .upLeftDiv1{
+        height: 7%;
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 3%;
+    }
+    .upLeftInput2{
+        width: 88%;
+    }
+    .upLeftFireBtn{
+        width: 10%;
+    }
+    .upLeftDiv2{
+        height: 7%;
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .upLeftInput3{
+        width: 10%;
+    }
+    .upLeftMineBtn{
+        width: 88%;
+    }
+    .upRight{
+        flex: 1.5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 70vh;
+        border: 1px solid;
+        margin: 3px 3px;
+    }
+    .upRightDiv1{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    .upRightDiv2{
+        border: 1px solid;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 3%;
+    }
+    .downContainer{
+        border: 1px solid;
+        width: 100%;
+        height: 50vh;
+        margin: 3px 3px;
+        overflow: scroll;
+        overflow-y: hidden;
+        display: flex;
+        margin: 15px 0px;
+    }
+}
+@media(max-width: 800px){
+    .upContainer{
+        display: flex;
+        flex-direction: column;
+    }
+    .upLeft{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 40vh;
+        border: 1px solid;
+        margin: 3px 3px;
+    }
+    .upLeftInput1{
+        width: 80%;
+        padding: 0;
+        margin: 0;
+        border: 1px solid;
+        height: 12%;
+        margin-bottom: 3%;
+    }
+    .upLeftDiv1{
+        height: 12%;
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 3%;
+    }
+    .upLeftInput2{
+        width: 88%;
+    }
+    .upLeftFireBtn{
+        width: 10%;
+    }
+    .upLeftDiv2{
+        height: 12%;
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .upLeftInput3{
+        width: 10%;
+    }
+    .upLeftMineBtn{
+        width: 88%;
+    }
+    .upRight{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 40vh;
+        border: 1px solid;
+        margin: 3px 3px;
+    }
+    .upRightDiv1{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    .upRightDiv2{
+        border: 1px solid;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 3%;
+    }
+    .downContainer{
+        border: 1px solid;
+        width: 100%;
+        height: 50vh;
+        overflow: scroll;
+        overflow-y: hidden;
+        display: flex;
+        margin: 15px 0px;
+    }
+}
