@@ -1,6 +1,58 @@
+import { useEffect, useState } from "react";
+import sha256 from "sha256";
 import styles from "./Home.module.css";
 
 function Home(){
+    const [inputData, setInputData] = useState("");
+    const [level, setLevel] = useState(0);
+    const [nonce, setNonce] = useState("");
+    const [mineBtn, setMineBtn] = useState(true);
+    const [hashList, setHashList] = useState([]);
+    const [hash, setHash] = useState("");
+
+    useEffect(() => {
+        hashFunction();
+    },[inputData, nonce, hashList]);
+    useEffect(()=>{
+        let str = "0";
+        for(let i = 0; i < level; i++){
+            str += "0";
+        }
+        if(hash.slice(0,parseInt(level) + parseInt(1)) === str){
+            setMineBtn(false);
+        }
+        else{
+            setMineBtn(true);
+        }
+    },[hash, level]);
+
+    const dataOnChange = (e) => {
+        setInputData(e.target.value);
+    }
+    const nonceOnChange = (e) => {
+        setNonce(e.target.value);
+    }
+    const levelChange = (e) => {
+        setLevel(e.target.value);
+    }
+    const hashFunction = () => {
+        if(inputData !== "" & nonce !== ""){
+            if(hashList.length !== 0){
+                setHash(sha256(inputData + nonce + hashList[hashList.length - 1]));
+            }
+            else{
+                setHash(sha256(inputData + nonce));
+            }
+        }
+    }
+    const mineBtnOnClick = (e) => {
+        e.preventDefault();
+        setHashList((current) => [...current,hash]);
+        setInputData("");
+        setNonce("");
+        setLevel(0);
+        setMineBtn(true);
+    }
     return(
         <>
             <section className={styles.upContainer}>
@@ -9,12 +61,16 @@ function Home(){
                     <input
                         className={styles.upLeftInput1}
                         placeholder="Block의 Data"
+                        value={inputData}
+                        onChange={dataOnChange}
                     />
                     <div className={styles.upLeftDiv1}>
                         <input
                             className={styles.upLeftInput2}
                             placeholder="Nonce"
                             type="number"
+                            value={nonce}
+                            onChange={nonceOnChange}
                         />
                         <button className={styles.upLeftFireBtn}>fire</button>
                     </div>
@@ -22,8 +78,16 @@ function Home(){
                         <input
                             className={styles.upLeftInput3}
                             type="number"
+                            value={level}
+                            onChange={levelChange}
                         />
-                        <button className={styles.upLeftMineBtn}>Mine block</button>
+                        <button 
+                            className={styles.upLeftMineBtn}
+                            disabled={mineBtn}
+                            onClick={mineBtnOnClick}
+                        >
+                            Mine block
+                        </button>
                     </div>
                 </form>
                 <div className={styles.upRight}>
@@ -31,21 +95,23 @@ function Home(){
                     <div className={styles.upRightDiv1}>
                         <div className={styles.upRightDiv2}>
                             <span>Previous Hash:</span>
-                            <span>111</span>
+                            <span>{hashList.length !== 0 ? hashList[hashList.length - 1] : null}</span>
                         </div>
                         <div className={styles.upRightDiv2}>
                             <span>Data:</span>
-                            <span>222</span>
+                            <span>{inputData}</span>
                         </div>
                         <div className={styles.upRightDiv2}>
                             <span>Hash:</span>
-                            <span>333</span>
+                            <span>
+                                {inputData !== "" & nonce !== "" ? hash : null}
+                            </span>
                         </div>
                     </div>
                 </div>
             </section>
             <section className={styles.downContainer}>
-                블럭들 쌓이는곳
+                {hashList.map((item, index)=>{return <div key={index}>{item}</div>})}
             </section>
         </>
     );

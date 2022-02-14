@@ -77,7 +77,8 @@
         overflow: scroll;
         overflow-y: hidden;
         display: flex;
-        margin: 15px 0px;
+        flex-direction: column;
+        margin: 5px 0px;
     }
 }
 @media(max-width: 800px){
@@ -156,6 +157,7 @@
         overflow: scroll;
         overflow-y: hidden;
         display: flex;
-        margin: 15px 0px;
+        flex-direction: column;
+        margin: 5px 0px;
     }
 }
