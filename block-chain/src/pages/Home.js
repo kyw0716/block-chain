@@ -5,10 +5,11 @@ import styles from "./Home.module.css";
 function Home(){
     const [inputData, setInputData] = useState("");
     const [level, setLevel] = useState(0);
-    const [nonce, setNonce] = useState("");
+    const [nonce, setNonce] = useState(0);
     const [mineBtn, setMineBtn] = useState(true);
     const [hashList, setHashList] = useState([]);
     const [hash, setHash] = useState("");
+    const [interv, setinterv] = useState();
 
     useEffect(() => {
         hashFunction();
@@ -20,11 +21,15 @@ function Home(){
         }
         if(hash.slice(0,parseInt(level) + parseInt(1)) === str){
             setMineBtn(false);
+            clearInterval(interv);
         }
         else{
             setMineBtn(true);
         }
-    },[hash, level]);
+        if(level < 0){
+            setLevel(0);
+        }
+    },[hash, level, interv]);
 
     const dataOnChange = (e) => {
         setInputData(e.target.value);
@@ -50,18 +55,25 @@ function Home(){
         if(hashList.length !== 0){
             setHashList((current) => [...current,[hash,inputData,(hashList[hashList.length - 1])[0]]]);
             setInputData("");
-            setNonce("");
+            setNonce(0);
             setLevel(0);
             setMineBtn(true);
         }
         else{
             setHashList((current) => [...current,[hash,inputData,null]]);
             setInputData("");
-            setNonce("");
+            setNonce(0);
             setLevel(0);
             setMineBtn(true);
         }
     }
+
+    const fire = () => {
+        setinterv(setInterval(() => {
+            setNonce(current => current + 1);
+        }, 1));
+    }
+
     return(
         <>
             <section className={styles.upContainer}>
@@ -81,7 +93,7 @@ function Home(){
                             value={nonce}
                             onChange={nonceOnChange}
                         />
-                        <button className={styles.upLeftFireBtn}>fire</button>
+                        <button className={styles.upLeftFireBtn} onClick={fire}>fire</button>
                     </div>
                     <div className={styles.upLeftDiv2}>
                         <input
