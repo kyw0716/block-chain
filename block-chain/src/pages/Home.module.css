@@ -99,6 +99,11 @@
         word-wrap: break-word;
         white-space: normal;
     }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 }
 @media(max-width: 800px){
     .upContainer{
@@ -198,5 +203,10 @@
         width: 100%;
         white-space: normal;
         word-wrap: break-word;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
 }
