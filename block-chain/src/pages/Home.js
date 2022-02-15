@@ -47,11 +47,20 @@ function Home(){
     }
     const mineBtnOnClick = (e) => {
         e.preventDefault();
-        setHashList((current) => [...current,hash]);
-        setInputData("");
-        setNonce("");
-        setLevel(0);
-        setMineBtn(true);
+        if(hashList.length !== 0){
+            setHashList((current) => [...current,[hash,inputData,(hashList[hashList.length - 1])[0]]]);
+            setInputData("");
+            setNonce("");
+            setLevel(0);
+            setMineBtn(true);
+        }
+        else{
+            setHashList((current) => [...current,[hash,inputData,null]]);
+            setInputData("");
+            setNonce("");
+            setLevel(0);
+            setMineBtn(true);
+        }
     }
     return(
         <>
@@ -95,7 +104,7 @@ function Home(){
                     <div className={styles.upRightDiv1}>
                         <div className={styles.upRightDiv2}>
                             <span>Previous Hash:</span>
-                            <span>{hashList.length !== 0 ? hashList[hashList.length - 1] : null}</span>
+                            <span>{hashList.length !== 0 ? (hashList[hashList.length - 1])[0] : null}</span>
                         </div>
                         <div className={styles.upRightDiv2}>
                             <span>Data:</span>
@@ -111,7 +120,30 @@ function Home(){
                 </div>
             </section>
             <section className={styles.downContainer}>
-                {hashList.map((item, index)=>{return <div key={index}>{item}</div>})}
+                {hashList.map((item, index)=>{
+                    return (
+                        <div className={styles.mapDiv} key={index}>
+                            <div className={styles.mapSpan}>
+                                <span>previous hash:</span>
+                                <span>{item[2]}</span>
+                            </div>
+                            <span>
+                                +
+                            </span>
+                            <div className={styles.mapSpan}>
+                                <span>data:</span>
+                                <span>{item[1]}</span>
+                            </div>
+                            <span>
+                                +
+                            </span>
+                            <div className={styles.mapSpan}>
+                                <span>current hash:</span>
+                                <span>{item[0]}</span>    
+                            </div>
+                        </div>
+                    )
+                })}
             </section>
         </>
     );
