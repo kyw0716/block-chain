@@ -65,7 +65,7 @@ function Home(){
     return(
         <>
             <section className={styles.upContainer}>
-                <form className={styles.upLeft}>
+                <div className={styles.upLeft}>
                     <h1>BitCoin Simulator</h1>
                     <input
                         className={styles.upLeftInput1}
@@ -98,7 +98,7 @@ function Home(){
                             Mine block
                         </button>
                     </div>
-                </form>
+                </div>
                 <div className={styles.upRight}>
                     <h1>Candidate Block</h1>
                     <div className={styles.upRightDiv1}>
